@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 200" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  
+  <!-- Definitions for animations and gradients -->
+  <defs>
+    <!-- Purple to pink gradient -->
+    <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#8A2BE2">
+        <animate attributeName="stop-color" values="#8A2BE2; #B724E6; #8A2BE2" dur="8s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="100%" stop-color="#DA70D6">
+        <animate attributeName="stop-color" values="#DA70D6; #C840D9; #DA70D6" dur="8s" repeatCount="indefinite" />
+      </stop>
+    </linearGradient>
+    
+    <!-- Blue to cyan gradient -->
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00BFFF">
+        <animate attributeName="stop-color" values="#00BFFF; #1E90FF; #00BFFF" dur="8s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="100%" stop-color="#00FFFF">
+        <animate attributeName="stop-color" values="#00FFFF; #40E0D0; #00FFFF" dur="8s" repeatCount="indefinite" />
+      </stop>
+    </linearGradient>
+    
+    <!-- Shimmer effect -->
+    <linearGradient id="shimmer" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0)">
+        <animate attributeName="offset" values="0;1" dur="3s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="10%" stop-color="rgba(255,255,255,0.3)">
+        <animate attributeName="offset" values="0.1;1.1" dur="3s" repeatCount="indefinite" />
+      </stop>
+      <stop offset="20%" stop-color="rgba(255,255,255,0)">
+        <animate attributeName="offset" values="0.2;1.2" dur="3s" repeatCount="indefinite" />
+      </stop>
+    </linearGradient>
+  </defs>
+  
+  <!-- Centered Content Group -->
+  <g id="content" transform="translate(600, 100)">
+    <!-- Text -->
+    <text x="-300" y="20" font-family="Arial, sans-serif" font-weight="900" font-size="90" fill="#000000" text-anchor="middle">CLIENT PORTAL</text>
+    
+    <!-- Animated Colorful Lines -->
+    <g>
+      <!-- Purple line with animation -->
+      <rect x="-400" y="45" width="400" height="8" fill="url(#purpleGradient)">
+        <animate attributeName="width" values="400;410;400" dur="4s" repeatCount="indefinite" />
+      </rect>
+      
+      <!-- Blue line with animation -->
+      <rect x="0" y="45" width="400" height="8" fill="url(#blueGradient)">
+        <animate attributeName="width" values="400;390;400" dur="4s" repeatCount="indefinite" />
+      </rect>
+      
+      <!-- Shimmer overlay -->
+      <rect x="-400" y="45" width="800" height="8" fill="url(#shimmer)" opacity="0.7" />
+    </g>
+  </g>
+</svg>

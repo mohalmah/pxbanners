@@ -85,18 +85,22 @@
 
     /**
      * Parses TSV text into an array of objects based on header columns.
+     * We remove any trailing \r from headers to match the actual keys.
      */
     function parseTSV(tsv) {
+      // Split lines
       const lines = tsv.trim().split("\n");
-      const headers = lines[0].split("\t");
 
+      // Split the header line by tabs, trim them, and remove any \r
+      const headers = lines[0].split("\t").map(h => h.trim().replace("\r", ""));
       console.log("Headers found in TSV:", headers);
 
+      // For each subsequent line, build an object with these headers
       const parsed = lines.slice(1).map(line => {
         const values = line.split("\t");
         const entry = {};
         headers.forEach((header, idx) => {
-          entry[header.trim()] = values[idx] ? values[idx].trim() : "";
+          entry[header] = values[idx] ? values[idx].trim() : "";
         });
         return entry;
       });
@@ -130,10 +134,9 @@
         return;
       }
 
-      // Adjust these field names if your sheet columns differ:
-      const clientName = clientData["Client"];
-      const status = clientData["Status"];
-      const updated = clientData["LastUpdated"] || "";
+      // Column A in your sheet is "Name", column B is "🚦 Account Status"
+      const clientName = clientData["Name"];
+      const status = clientData["🚦 Account Status"];
 
       // Create a box
       const box = document.createElement("div");
@@ -148,12 +151,8 @@
       // Populate the box
       box.innerHTML = `
         <div>Client: ${clientName}</div>
-        <div>Overall Health: ${status}</div>
-        ${
-          updated
-            ? `<div class="date">As of ${updated}</div>`
-            : `<div class="date">No LastUpdated info</div>`
-        }
+        <div>Overall Health: ${status || "Unknown"}</div>
+        <div class="date">Fetched at ${new Date().toLocaleString()}</div>
       `;
 
       // Clear any old content, then add this box
@@ -186,8 +185,9 @@
       const data = parseTSV(tsvData);
       console.log("Parsed TSV data:", data);
 
-      // Find the first row where "Client" matches the URL parameter
-      const clientData = data.find(row => row["Client"] === clientParam);
+      // Find the first row where "Name" matches the URL parameter
+      // because the CSV shows "Name" as the first column
+      const clientData = data.find(row => row["Name"] === clientParam);
       console.log("Matching client data:", clientData);
 
       // Create the status box

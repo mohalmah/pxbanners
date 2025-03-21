@@ -58,7 +58,7 @@
 
   <script>
     /**
-     * Reads the 'client' parameter from the URL, e.g. ?client=Acme
+     * Reads the 'client' parameter from the URL, e.g. ?client=PropHero
      */
     function getClientParam() {
       const urlParams = new URLSearchParams(window.location.search);
@@ -90,7 +90,9 @@
       const lines = tsv.trim().split("\n");
       const headers = lines[0].split("\t");
 
-      return lines.slice(1).map(line => {
+      console.log("Headers found in TSV:", headers);
+
+      const parsed = lines.slice(1).map(line => {
         const values = line.split("\t");
         const entry = {};
         headers.forEach((header, idx) => {
@@ -98,6 +100,7 @@
         });
         return entry;
       });
+      return parsed;
     }
 
     /**
@@ -127,10 +130,10 @@
         return;
       }
 
-      // Extract fields from your TSV row (change these names if your headers differ)
-      const clientName = clientData["ClientName"];
+      // Adjust these field names if your sheet columns differ:
+      const clientName = clientData["Client"];
       const status = clientData["Status"];
-      const updated = clientData["LastUpdated"];
+      const updated = clientData["LastUpdated"] || "";
 
       // Create a box
       const box = document.createElement("div");
@@ -146,7 +149,11 @@
       box.innerHTML = `
         <div>Client: ${clientName}</div>
         <div>Overall Health: ${status}</div>
-        <div class="date">As of ${updated}</div>
+        ${
+          updated
+            ? `<div class="date">As of ${updated}</div>`
+            : `<div class="date">No LastUpdated info</div>`
+        }
       `;
 
       // Clear any old content, then add this box
@@ -159,13 +166,17 @@
      */
     async function main() {
       const clientParam = getClientParam();
+      console.log("Client param from URL:", clientParam);
+
       if (!clientParam) {
         document.getElementById("statusContainer").innerHTML =
-          "<p>Please provide a client parameter in the URL (e.g., ?client=Acme)</p>";
+          "<p>Please provide a client parameter in the URL (e.g., ?client=PropHero)</p>";
         return;
       }
 
       const tsvData = await fetchStatusData();
+      console.log("TSV raw data:", tsvData);
+
       if (!tsvData) {
         document.getElementById("statusContainer").innerHTML =
           "<p>Error fetching data.</p>";
@@ -173,9 +184,11 @@
       }
 
       const data = parseTSV(tsvData);
+      console.log("Parsed TSV data:", data);
 
-      // Find the first row where "ClientName" matches the URL parameter
-      const clientData = data.find(row => row["ClientName"] === clientParam);
+      // Find the first row where "Client" matches the URL parameter
+      const clientData = data.find(row => row["Client"] === clientParam);
+      console.log("Matching client data:", clientData);
 
       // Create the status box
       createStatusBox(clientData);

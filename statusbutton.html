@@ -5,56 +5,195 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Overall Health Status</title>
   <style>
-    /* Container for status content */
-    #statusContainer {
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+    
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+      margin: 0;
+      padding: 0;
+      height: 100vh;
       display: flex;
       justify-content: center;
-      margin-top: 50px;
+      align-items: center;
     }
 
-    /* The status box/button */
-    .status-box {
-      width: 300px;
+    /* Container for status content */
+    #statusContainer {
+      width: 100%;
+      max-width: 500px;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      perspective: 1000px;
+    }
+
+    /* The status box/card */
+    .status-box {
+      width: 100%;
+      padding: 30px;
       text-align: center;
-      font-size: 20px;
-      font-weight: bold;
       color: #fff;
-      border-radius: 10px;
-      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-      transition: background-color 0.5s ease;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+      transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+      transform-style: preserve-3d;
+      animation: fadeIn 1.2s ease-out forwards;
+      background-size: 200% 200%;
     }
 
-    /* Light text for date */
-    .date {
-      font-size: 14px;
-      margin-top: 10px;
-      font-weight: normal;
+    /* Status text styling */
+    .client-name {
+      font-size: 18px;
+      margin-bottom: 15px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    /* Simple "pulse" animation if status is not Normal */
+    .status-text {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 15px 0;
+      letter-spacing: 0.8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* Light text for timestamp */
+    .timestamp {
+      font-size: 11px;
+      margin-top: 15px;
+      font-weight: 300;
+      opacity: 0.8;
+      letter-spacing: 0.5px;
+    }
+
+    /* Status gradients */
+    .normal-gradient {
+      background: linear-gradient(-45deg, #00b09b, #96c93d);
+      background-size: 200% 200%;
+      animation: gradientShift 5s ease infinite;
+    }
+
+    .attention-gradient {
+      background: linear-gradient(-45deg, #ff9966, #ff5e62);
+      background-size: 200% 200%;
+      animation: gradientShift 5s ease infinite;
+    }
+
+    .critical-gradient {
+      background: linear-gradient(-45deg, #cb2d3e, #ef473a);
+      background-size: 200% 200%;
+      animation: gradientShift 5s ease infinite;
+    }
+
+    .unknown-gradient {
+      background: linear-gradient(-45deg, #757F9A, #D7DDE8);
+      background-size: 200% 200%;
+      animation: gradientShift 5s ease infinite;
+    }
+
+    /* Pulse animation for non-normal statuses */
     @keyframes pulse {
       0% {
-        transform: scale(1);
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+        transform: scale(1) rotate3d(0, 1, 0, 0deg);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       }
       50% {
-        transform: scale(1.05);
-        box-shadow: 0 0 20px rgba(255, 255, 255, 0.7);
+        transform: scale(1.03) rotate3d(0, 1, 0, 2deg);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
       }
       100% {
-        transform: scale(1);
-        box-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+        transform: scale(1) rotate3d(0, 1, 0, 0deg);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
       }
     }
+
+    /* Gradient animation */
+    @keyframes gradientShift {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Fade-in animation for initial load */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Apply pulse animation to non-normal statuses */
     .pulse {
-      animation: pulse 2s infinite;
+      animation: pulse 3s infinite;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 600px) {
+      #statusContainer {
+        padding: 15px;
+      }
+      
+      .status-box {
+        padding: 25px 15px;
+      }
+      
+      .client-name {
+        font-size: 16px;
+      }
+      
+      .status-text {
+        font-size: 22px;
+      }
+    }
+
+    /* Additional elements */
+    .status-icon {
+      font-size: 32px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .logo {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: #333;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .tagline {
+      font-size: 13px;
+      color: #666;
+      margin-top: 20px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <div id="statusContainer"></div>
+  <div id="statusContainer">
+    <div class="logo">🔍 HEALTH<span style="color:#00b09b">MONITOR</span></div>
+  </div>
 
   <script>
     /**
@@ -108,18 +247,34 @@
     }
 
     /**
-     * Returns a color for the given status.
+     * Returns status-specific styles and emojis
      */
-    function getStatusColor(status) {
+    function getStatusStyles(status) {
       switch (status) {
         case "Normal":
-          return "green";
+          return {
+            gradientClass: "normal-gradient",
+            emoji: "✅",
+            pulsing: false
+          };
         case "Need Attention":
-          return "orange";
+          return {
+            gradientClass: "attention-gradient",
+            emoji: "⚠️",
+            pulsing: true
+          };
         case "Critical":
-          return "red";
+          return {
+            gradientClass: "critical-gradient",
+            emoji: "🚨",
+            pulsing: true
+          };
         default:
-          return "gray";
+          return {
+            gradientClass: "unknown-gradient",
+            emoji: "❓",
+            pulsing: false
+          };
       }
     }
 
@@ -130,34 +285,51 @@
       const container = document.getElementById("statusContainer");
 
       if (!clientData) {
-        container.innerHTML = "<p>No data found for this client.</p>";
+        container.innerHTML = `
+          <div class="logo">🔍 HEALTH<span style="color:#00b09b">MONITOR</span></div>
+          <div style="text-align: center; color: #666; font-size: 16px;">
+            <p>No data found for this client.</p>
+            <p style="font-size: 13px;">Please check the client name and try again.</p>
+          </div>`;
         return;
       }
 
       // Column A in your sheet is "Name", column B is "🚦 Account Status"
       const clientName = clientData["Name"];
-      const status = clientData["🚦 Account Status"];
+      const status = clientData["🚦 Account Status"] || "Unknown";
+      const statusStyles = getStatusStyles(status);
 
       // Create a box
       const box = document.createElement("div");
-      box.className = "status-box";
-      box.style.backgroundColor = getStatusColor(status);
-
-      // If status is not Normal, add a pulse animation
-      if (status !== "Normal") {
+      box.className = `status-box ${statusStyles.gradientClass}`;
+      
+      // Add pulse animation if needed
+      if (statusStyles.pulsing) {
         box.classList.add("pulse");
       }
 
+      // Format timestamp
+      const now = new Date();
+      const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+      const formattedDate = now.toLocaleDateString([], { month: 'short', day: 'numeric' });
+
       // Populate the box
       box.innerHTML = `
-        <div>Client: ${clientName}</div>
-        <div>Overall Health: ${status || "Unknown"}</div>
-        <div class="date">Fetched at ${new Date().toLocaleString()}</div>
+        <div class="status-icon">${statusStyles.emoji}</div>
+        <div class="client-name">Client: ${clientName}</div>
+        <div class="status-text">Health Status: ${status}</div>
+        <div class="timestamp">Last updated: ${formattedDate} at ${formattedTime}</div>
       `;
 
-      // Clear any old content, then add this box
-      container.innerHTML = "";
+      // Clear any old content, then add this box and tagline
+      container.innerHTML = `<div class="logo">🔍 HEALTH<span style="color:#00b09b">MONITOR</span></div>`;
       container.appendChild(box);
+      
+      // Add tagline
+      const tagline = document.createElement("div");
+      tagline.className = "tagline";
+      tagline.textContent = "Real-time health monitoring for your business";
+      container.appendChild(tagline);
     }
 
     /**
@@ -168,8 +340,12 @@
       console.log("Client param from URL:", clientParam);
 
       if (!clientParam) {
-        document.getElementById("statusContainer").innerHTML =
-          "<p>Please provide a client parameter in the URL (e.g., ?client=PropHero)</p>";
+        document.getElementById("statusContainer").innerHTML = `
+          <div class="logo">🔍 HEALTH<span style="color:#00b09b">MONITOR</span></div>
+          <div style="text-align: center; color: #666; font-size: 16px;">
+            <p>Please provide a client parameter in the URL</p>
+            <p style="font-size: 13px; color: #888;">Example: ?client=PropHero</p>
+          </div>`;
         return;
       }
 
@@ -177,8 +353,12 @@
       console.log("TSV raw data:", tsvData);
 
       if (!tsvData) {
-        document.getElementById("statusContainer").innerHTML =
-          "<p>Error fetching data.</p>";
+        document.getElementById("statusContainer").innerHTML = `
+          <div class="logo">🔍 HEALTH<span style="color:#00b09b">MONITOR</span></div>
+          <div style="text-align: center; color: #666; font-size: 16px;">
+            <p>Error fetching data.</p>
+            <p style="font-size: 13px;">Please try again later.</p>
+          </div>`;
         return;
       }
 
@@ -186,7 +366,6 @@
       console.log("Parsed TSV data:", data);
 
       // Find the first row where "Name" matches the URL parameter
-      // because the CSV shows "Name" as the first column
       const clientData = data.find(row => row["Name"] === clientParam);
       console.log("Matching client data:", clientData);
 

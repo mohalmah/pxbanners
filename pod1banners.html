@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pod One</title>
+  <style>
+    /* Reset and ensure no scrollbars */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: white;
+      font-family: Arial, sans-serif;
+    }
+    /* Main container */
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      padding: 20px;
+    }
+    /* Individual pod item */
+    .pod-item {
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 300px;
+    }
+    /* Left border for pod */
+    .pod-border {
+      width: 4px;
+      height: 40px;
+      margin-right: 10px;
+      border-radius: 2px;
+      background-color: #4A90E2; /* Blue for Pod One */
+    }
+    /* Pod icon */
+    .pod-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 18px;
+      color: white;
+      margin-right: 15px;
+      background-color: #4A90E2; /* Blue for Pod One */
+    }
+    /* Pod text */
+    .pod-text {
+      font-size: 16px;
+      font-weight: 600;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="pod-item">
+      <div class="pod-border"></div>
+      <div class="pod-icon">P</div>
+      <div class="pod-text">Pod One</div>
+    </div>
+  </div>
+</body>
+</html>

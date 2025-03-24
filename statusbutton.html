@@ -87,6 +87,13 @@
       animation: gradientShift 5s ease infinite;
     }
 
+    /* New Onboarding gradient with yellow color */
+    .onboarding-gradient {
+      background: linear-gradient(-45deg, #FFD700, #FFEA00);
+      background-size: 200% 200%;
+      animation: gradientShift 5s ease infinite;
+    }
+
     /* Gradient animation */
     @keyframes gradientShift {
       0% {
@@ -177,6 +184,11 @@
           return {
             gradientClass: "critical-gradient",
             emoji: "🚨"
+          };
+        case "Onboarding":
+          return {
+            gradientClass: "onboarding-gradient",
+            emoji: "🚧"
           };
         default:
           return {

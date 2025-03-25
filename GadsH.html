@@ -67,6 +67,13 @@
       100% { top: 100%; }
     }
     
+    /* Styling for the Google Ads icon */
+    .google-ads-icon {
+      width: 50px; /* Adjust the width as needed */
+      height: auto;
+      margin-right: 15px;
+    }
+    
     /* Media queries for better responsiveness */
     @media (max-width: 480px) {
       .banner h1 {
@@ -75,6 +82,10 @@
       .vertical-line {
         width: 8px;
         margin-right: 2px;
+      }
+      .google-ads-icon {
+        width: 40px; /* Adjust icon size for smaller screens */
+        margin-right: 10px;
       }
     }
     
@@ -88,6 +99,8 @@
 </head>
 <body>
   <div class="banner">
+    <!-- Add the Google Ads icon here -->
+    <img src="path_to_google_ads_icon.svg" alt="Google Ads Icon" class="google-ads-icon" />
     <h1><span>G</span> ADS</h1>
     <div class="vertical-line"></div>
   </div>

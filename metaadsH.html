@@ -67,7 +67,14 @@
       100% { top: 100%; }
     }
     
-    /* Media queries for better responsiveness */
+    /* Styling for the Meta Ads icon */
+    .meta-ads-icon {
+      width: 50px; /* Adjust the width as needed */
+      height: auto;
+      margin-right: 15px;
+    }
+    
+    /* Media queries for responsiveness */
     @media (max-width: 480px) {
       .banner h1 {
         font-size: 8vw;
@@ -76,9 +83,12 @@
         width: 8px;
         margin-right: 2px;
       }
+      .meta-ads-icon {
+        width: 40px; /* Adjust icon size for smaller screens */
+        margin-right: 10px;
+      }
     }
     
-    /* Ensure line scales with container width */
     @media (min-width: 481px) {
       .vertical-line {
         width: calc(5px + 1vw);
@@ -88,7 +98,9 @@
 </head>
 <body>
   <div class="banner">
-    <h1><span>META</span> ADS</h1>
+    <!-- Insert the Meta Ads icon here -->
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Meta-Logo.png/2560px-Meta-Logo.png" alt="Meta Ads Icon" class="meta-ads-icon" />
+    <h1><span></span> ADS</h1>
     <div class="vertical-line"></div>
   </div>
 </body>

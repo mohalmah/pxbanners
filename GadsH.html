@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Responsive Ads Banners</title>
+  <title>Google Ads Banner</title>
   <style>
     /* Basic resets */
     * {
@@ -16,48 +16,34 @@
       font-family: Arial, sans-serif;
     }
 
-    /* Container to hold both banners */
-    .ad-container {
-      display: flex;
-      flex-wrap: wrap;      /* Banners will wrap on smaller screens */
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      padding: 1rem;
-    }
-
-    /* Common banner styling */
+    /* Banner container */
     .banner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 320px;              /* Fixed or max width for the banner */
-      height: 100px;             /* Adjust as needed */
+      width: 320px; /* Adjust as needed */
+      height: 100px; /* Adjust as needed */
+      margin: 1rem auto; /* Centers the banner horizontally */
       padding: 10px 15px;
       border-radius: 10px;
       background: #fff;
       box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     }
     .banner img {
-      width: 30px;               /* Smaller icon size */
+      width: 30px;
       height: auto;
     }
     .banner h1 {
-      font-size: 1.2rem;         /* Adjust text size as desired */
+      font-size: 1.2rem;
       font-weight: 900;
       color: #000;
-      margin: 0 10px;           /* Space between icon and vertical line */
+      margin: 0 10px; /* Spacing between icon and vertical line */
       white-space: nowrap;
     }
 
-    /* Google banner color highlight */
-    .google-banner h1 span {
+    /* Google Ads color highlight */
+    .banner h1 span {
       color: #4285F4;
-    }
-
-    /* Meta banner color highlight */
-    .meta-banner h1 span {
-      color: #1877F2;
     }
 
     /* Vertical line styling */
@@ -67,16 +53,8 @@
       border-radius: 3px;
       position: relative;
       overflow: hidden;
-    }
-    /* Gradient for Google Ads banner */
-    .google-banner .vertical-line {
       background: linear-gradient(to bottom, #4285F4, #DB4437);
     }
-    /* Gradient for Meta Ads banner */
-    .meta-banner .vertical-line {
-      background: linear-gradient(to bottom, #1877F2, #45BBE0);
-    }
-
     /* Shimmer animation */
     .vertical-line::after {
       content: "";
@@ -102,36 +80,27 @@
     /* Responsive adjustments */
     @media (max-width: 480px) {
       .banner {
-        width: 90%;      /* Let the banner shrink on smaller screens */
+        width: 90%;
         height: auto;
-      }
-      .banner h1 {
-        font-size: 1rem;
       }
       .banner img {
         width: 24px;
+      }
+      .banner h1 {
+        font-size: 1rem;
       }
     }
   </style>
 </head>
 <body>
-  <div class="ad-container">
-    <!-- Google Ads Banner -->
-    <div class="banner google-banner">
+  <div class="banner">
+    <!-- Replace with your actual Google Ads icon file or URL -->
     <img src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Google_Ads_icon.svg" alt="Google Ads Icon" class="google-ads-icon" />
-      <h1><span>G</span> ADS</h1>
-      <div class="vertical-line"></div>
-    </div>
-
-    <!-- Meta Ads Banner -->
-    <div class="banner meta-banner">
-      <img src="path_to_meta_ads_icon.svg" alt="Meta Ads Icon" />
-      <h1><span>META</span> ADS</h1>
-      <div class="vertical-line"></div>
-    </div>
+    <h1><span>G</span> ADS</h1>
+    <div class="vertical-line"></div>
   </div>
 </body>
 </html>
 
-    
+     
 

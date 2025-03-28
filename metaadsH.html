@@ -16,6 +16,10 @@
     }
     body {
       font-family: Arial, sans-serif;
+      /* Use flexbox to center the banner in the entire viewport */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Banner container */
@@ -23,40 +27,56 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 320px;          /* Adjust as needed */
-      height: 240px;         /* Increased height to accommodate larger icon */
-      margin: 1rem auto;     /* Centers the banner horizontally */
+      width: 100%;           /* Fill parent width */
+      height: 100%;          /* Fill parent height */
       padding: 10px 15px;
       border-radius: 10px;
       background: transparent; /* Transparent banner */
-      /* box-shadow removed */
+      box-sizing: border-box; /* Include padding in width/height calculation */
     }
+    
+    /* Content wrapper for better positioning */
+    .content {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    
     .banner img {
-      width: 240px;           /* Larger icon */
+      width: 110px;          /* Larger icon */
       height: auto;
+      max-width: 30%;        /* Responsive scaling */
+      margin-right: 15px;
     }
+    
     .banner h1 {
-      font-size: 1.2rem;
+      font-size: 2.2rem;     /* Bigger font */
       font-weight: 900;
-      color: #000;
-      margin: 0 10px;        /* Spacing between icon and vertical line */
+      color: #000000;        /* All black text */
       white-space: nowrap;
     }
 
-    /* Meta Ads color highlight */
-    .banner h1 span {
-      color: #1877F2;
+    /* Meta styling */
+    .meta-text {
+      font-weight: bold;
+      display: inline-block;
+      color: #1877F2;        /* Meta blue */
     }
 
-    /* Vertical line styling */
+    /* Vertical line styling using Meta colors */
     .vertical-line {
-      width: 6px;
-      height: 70%;
-      border-radius: 3px;
+      width: 8px;
+      height: 80%;
+      margin-left: 20px;
+      border-radius: 4px;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(to bottom, #1877F2, #45BBE0);
+      background: linear-gradient(to bottom, 
+        #1877F2, /* Meta Blue */
+        #45BBE0  /* Meta Light Blue */
+      );
     }
+    
     /* Shimmer animation */
     .vertical-line::after {
       content: "";
@@ -73,6 +93,7 @@
       );
       animation: shimmer 3s infinite;
     }
+    
     @keyframes shimmer {
       0%   { top: -100%; }
       50%  { top: 100%;  }
@@ -82,27 +103,33 @@
     /* Responsive adjustments */
     @media (max-width: 480px) {
       .banner {
-        width: 90%;
-        height: auto;         /* Let the banner shrink on smaller screens */
+        padding: 8px;
       }
       .banner img {
-        width: 40px;         /* Slightly smaller icon on mobile */
+        width: 80px;
       }
       .banner h1 {
-        font-size: 1rem;
+        font-size: 1.8rem;
+      }
+      .vertical-line {
+        margin-left: 10px;
       }
     }
   </style>
 </head>
 <body>
   <div class="banner">
-    <!-- Meta Ads Icon (Provided link) -->
-    <img 
-      src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Meta-Logo.png/2560px-Meta-Logo.png" 
-      alt="Meta Ads Icon" 
-      class="meta-ads-icon" 
-    />
-    <h1><span>META</span> ADS</h1>
+    <div class="content">
+      <!-- Meta Logo -->
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Meta-Logo.png/2560px-Meta-Logo.png" 
+        alt="Meta Logo" 
+        class="meta-ads-icon" 
+      />
+      <h1>
+        <span class="meta-text">META</span> ADS
+      </h1>
+    </div>
     <div class="vertical-line"></div>
   </div>
 </body>

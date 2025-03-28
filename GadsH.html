@@ -16,6 +16,10 @@
     }
     body {
       font-family: Arial, sans-serif;
+      /* Use flexbox to center the banner in the entire viewport */
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* Banner container */
@@ -23,40 +27,63 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      width: 320px;          /* Adjust as needed */
-      height: 240px;         /* Increased height to accommodate larger icon */
-      margin: 1rem auto;     /* Centers the banner horizontally */
+      width: 100%;           /* Fill parent width */
+      height: 100%;          /* Fill parent height */
       padding: 10px 15px;
       border-radius: 10px;
       background: transparent; /* Transparent banner */
-      /* box-shadow removed */
+      box-sizing: border-box; /* Include padding in width/height calculation */
     }
+    
+    /* Content wrapper for better positioning */
+    .content {
+      display: flex;
+      align-items: center;
+      flex: 1;
+    }
+    
     .banner img {
-      width: 90px;           /* Larger icon */
+      width: 110px;          /* Larger icon */
       height: auto;
+      max-width: 30%;        /* Responsive scaling */
+      margin-right: 15px;
     }
+    
     .banner h1 {
-      font-size: 1.2rem;
+      font-size: 2.2rem;     /* Bigger font */
       font-weight: 900;
-      color: #000;
-      margin: 0 10px;        /* Spacing between icon and vertical line */
+      color: #000000;        /* All black text */
       white-space: nowrap;
     }
 
-    /* Google Ads color highlight */
-    .banner h1 span {
-      color: #4285F4;
+    /* Google multicolor styling */
+    .google-text {
+      font-weight: bold;
+      display: inline-block;
     }
+    .g { color: #4285F4; }   /* Blue */
+    .o1 { color: #DB4437; }  /* Red */
+    .o2 { color: #F4B400; }  /* Yellow */
+    .g2 { color: #4285F4; }  /* Blue */
+    .l { color: #0F9D58; }   /* Green */
+    .e { color: #DB4437; }   /* Red */
 
-    /* Vertical line styling */
+    /* Vertical line styling using Google colors */
     .vertical-line {
-      width: 6px;
-      height: 70%;
-      border-radius: 3px;
+      width: 8px;
+      height: 80%;
+      margin-left: 20px;
+      border-radius: 4px;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(to bottom, #4285F4, #DB4437);
+      background: linear-gradient(to bottom, 
+        #4285F4, /* Blue */
+        #DB4437, /* Red */
+        #F4B400, /* Yellow */
+        #0F9D58  /* Green */
+      );
     }
+    
     /* Shimmer animation */
     .vertical-line::after {
       content: "";
@@ -73,6 +100,7 @@
       );
       animation: shimmer 3s infinite;
     }
+    
     @keyframes shimmer {
       0%   { top: -100%; }
       50%  { top: 100%;  }
@@ -82,27 +110,36 @@
     /* Responsive adjustments */
     @media (max-width: 480px) {
       .banner {
-        width: 90%;
-        height: auto;         /* Let the banner shrink on smaller screens */
+        padding: 8px;
       }
       .banner img {
-        width: 40px;         /* Slightly smaller icon on mobile */
+        width: 80px;
       }
       .banner h1 {
-        font-size: 1rem;
+        font-size: 1.8rem;
+      }
+      .vertical-line {
+        margin-left: 10px;
       }
     }
   </style>
 </head>
 <body>
   <div class="banner">
-    <!-- Google Ads Icon (Provided link) -->
-    <img 
-      src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Google_Ads_icon.svg" 
-      alt="Google Ads Icon" 
-      class="google-ads-icon" 
-    />
-    <h1><span>Google</span> ADS</h1>
+    <div class="content">
+      <!-- Google Ads Icon -->
+      <img 
+        src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Google_Ads_icon.svg" 
+        alt="Google Ads Icon" 
+        class="google-ads-icon" 
+      />
+      <h1>
+        <span class="google-text">
+          <span class="g">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span>
+        </span>
+        ADS
+      </h1>
+    </div>
     <div class="vertical-line"></div>
   </div>
 </body>

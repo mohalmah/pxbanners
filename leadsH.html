@@ -5,48 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Lead Banner</title>
   <style>
-    /* Basic resets and no scroll */
-    html, body {
+    /* Reset all margins, padding, and ensure full viewport usage */
+    *, *::before, *::after {
       margin: 0;
       padding: 0;
-      width: 100%;
-      height: 100%;
-      overflow: hidden;       /* No scrollbars */
-      background: transparent;/* Transparent background */
+      box-sizing: border-box;
     }
+    
+    html, body {
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      background: transparent;
+    }
+    
     body {
       font-family: Arial, sans-serif;
-      /* Use flexbox to center the banner in the entire viewport */
       display: flex;
       align-items: center;
       justify-content: center;
     }
 
-    /* Banner container - changed to space-between layout */
+    /* Banner container takes up all available space */
     .banner {
       display: flex;
-      flex-direction: row;
       align-items: center;
-      justify-content: space-between; /* Push items to edges */
-      width: 100%;           /* Fill parent width */
-      height: 100%;          /* Fill parent height */
-      padding: 10px 15px;
-      background: transparent; /* Transparent banner */
-      box-sizing: border-box; /* Include padding in width/height calculation */
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      padding: 0;
+      background: transparent;
     }
     
+    /* More responsive text sizing */
     .banner h1 {
-      font-size: 8vw;
+      font-size: min(8vw, 8vh);
       font-weight: 900;
-      color: black;          /* Black text color */
-      margin-right: 0;       /* Remove right margin */
+      color: black;
+      padding-left: 15px;
+      white-space: nowrap;
     }
 
-    /* Vertical line styling - using green gradient */
+    /* Full-height vertical line */
     .vertical-line {
-      height: 8vw;           /* Match height to text */
+      height: 100%;
       width: 12px;
-      border-radius: 6px;
+      border-radius: 0;
       position: relative;
       overflow: hidden;
       background: linear-gradient(to bottom, 
@@ -58,7 +62,7 @@
       animation: lineExpand 4s infinite;
     }
     
-    /* Shimmer animation - adjusted for vertical */
+    /* Shimmer animation */
     .vertical-line::after {
       content: "";
       position: absolute;
@@ -82,8 +86,8 @@
     }
     
     @keyframes lineExpand {
-      0%, 100% { height: 8vw; }
-      50% { height: 8.5vw; }
+      0%, 100% { height: 100%; }
+      50% { height: 100%; }
     }
   </style>
 </head>

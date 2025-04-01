@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>CRO Banner</title>
+  <title>METRICS Banner</title>
   <style>
     /* Basic resets and no scroll */
     html, body {
@@ -22,10 +22,10 @@
       justify-content: center;
     }
 
-    /* Banner container */
+    /* Banner container - changed to row layout */
     .banner {
       display: flex;
-      flex-direction: column;
+      flex-direction: row;
       align-items: center;
       justify-content: center;
       width: 100%;           /* Fill parent width */
@@ -38,40 +38,36 @@
     .banner h1 {
       font-size: 8vw;
       font-weight: 900;
-      margin-bottom: 10px;
+      color: black;          /* Black text color */
+      margin-right: 15px;    /* Space between text and line */
     }
 
-    /* CRO colorful styling */
-    .c { color: #4285F4; } /* Blue */
-    .r { color: #EA4335; } /* Red */
-    .o { color: #FBBC05; } /* Yellow */
-
-    /* Underline styling */
-    .underline {
-      width: 90%;
-      height: 12px;
+    /* Vertical line styling */
+    .vertical-line {
+      height: 8vw;           /* Match height to text */
+      width: 12px;
       border-radius: 6px;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(to right, 
+      background: linear-gradient(to bottom, 
         #4285F4, /* Blue */
         #EA4335, /* Red */
         #FBBC05, /* Yellow */
         #34A853  /* Green */
       );
-      animation: underlineExpand 4s infinite;
+      animation: lineExpand 4s infinite;
     }
     
-    /* Shimmer animation */
-    .underline::after {
+    /* Shimmer animation - adjusted for vertical */
+    .vertical-line::after {
       content: "";
       position: absolute;
-      left: -100%;
-      top: 0;
+      top: -100%;
+      left: 0;
       width: 100%;
       height: 100%;
       background: linear-gradient(
-        to right,
+        to bottom,
         rgba(255,255,255,0),
         rgba(255,255,255,0.3),
         rgba(255,255,255,0)
@@ -80,23 +76,21 @@
     }
     
     @keyframes shimmer {
-      0% { left: -100%; }
-      50% { left: 100%; }
-      100% { left: 100%; }
+      0% { top: -100%; }
+      50% { top: 100%; }
+      100% { top: 100%; }
     }
     
-    @keyframes underlineExpand {
-      0%, 100% { width: 90%; }
-      50% { width: 95%; }
+    @keyframes lineExpand {
+      0%, 100% { height: 8vw; }
+      50% { height: 8.5vw; }
     }
   </style>
 </head>
 <body>
   <div class="banner">
-    <h1>
-      <span class="c">C</span><span class="r">R</span><span class="o">O</span>
-    </h1>
-    <div class="underline"></div>
+    <h1>METRICS</h1>
+    <div class="vertical-line"></div>
   </div>
 </body>
 </html>

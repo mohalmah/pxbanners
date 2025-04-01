@@ -22,37 +22,23 @@
       justify-content: center;
     }
 
-    /* Banner container */
+    /* Banner container - changed to row layout */
     .banner {
       display: flex;
+      flex-direction: row;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       width: 100%;           /* Fill parent width */
       height: 100%;          /* Fill parent height */
       padding: 10px 15px;
-      border-radius: 10px;
       background: transparent; /* Transparent banner */
       box-sizing: border-box; /* Include padding in width/height calculation */
     }
     
-    /* Content wrapper for better positioning */
-    .content {
-      display: flex;
-      align-items: center;
-      flex: 1;
-    }
-    
-    .banner img {
-      width: 110px;          /* Larger icon */
-      height: auto;
-      max-width: 30%;        /* Responsive scaling */
-      margin-right: 15px;
-    }
-    
     .banner h1 {
-      font-size: 2.2rem;     /* Bigger font */
+      font-size: 8vw;
       font-weight: 900;
-      color: #000000;        /* All black text */
+      margin-right: 15px;    /* Space between text and line */
       white-space: nowrap;
     }
 
@@ -68,12 +54,11 @@
     .l { color: #0F9D58; }   /* Green */
     .e { color: #DB4437; }   /* Red */
 
-    /* Vertical line styling using Google colors */
+    /* Vertical line styling */
     .vertical-line {
-      width: 8px;
-      height: 80%;
-      margin-left: 20px;
-      border-radius: 4px;
+      height: 8vw;           /* Match height to text */
+      width: 12px;
+      border-radius: 6px;
       position: relative;
       overflow: hidden;
       background: linear-gradient(to bottom, 
@@ -82,9 +67,10 @@
         #F4B400, /* Yellow */
         #0F9D58  /* Green */
       );
+      animation: lineExpand 4s infinite;
     }
     
-    /* Shimmer animation */
+    /* Shimmer animation - adjusted for vertical */
     .vertical-line::after {
       content: "";
       position: absolute;
@@ -102,44 +88,25 @@
     }
     
     @keyframes shimmer {
-      0%   { top: -100%; }
-      50%  { top: 100%;  }
-      100% { top: 100%;  }
+      0% { top: -100%; }
+      50% { top: 100%; }
+      100% { top: 100%; }
     }
-
-    /* Responsive adjustments */
-    @media (max-width: 480px) {
-      .banner {
-        padding: 8px;
-      }
-      .banner img {
-        width: 80px;
-      }
-      .banner h1 {
-        font-size: 1.8rem;
-      }
-      .vertical-line {
-        margin-left: 10px;
-      }
+    
+    @keyframes lineExpand {
+      0%, 100% { height: 8vw; }
+      50% { height: 8.5vw; }
     }
   </style>
 </head>
 <body>
   <div class="banner">
-    <div class="content">
-      <!-- Google Ads Icon -->
-      <img 
-        src="https://upload.wikimedia.org/wikipedia/commons/c/cc/Google_Ads_icon.svg" 
-        alt="Google Ads Icon" 
-        class="google-ads-icon" 
-      />
-      <h1>
-        <span class="google-text">
-          <span class="g">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span>
-        </span>
-        ADS
-      </h1>
-    </div>
+    <h1>
+      <span class="google-text">
+        <span class="g">G</span><span class="o1">o</span><span class="o2">o</span><span class="g2">g</span><span class="l">l</span><span class="e">e</span>
+      </span>
+      ADS
+    </h1>
     <div class="vertical-line"></div>
   </div>
 </body>

@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Command Centre Banner</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        }
+        
+        .banner-container {
+            width: 100%;
+            height: 100%;
+            min-height: 80px;
+            background: #070A1D; /* Darker blue from logo */
+            color: white;
+            overflow: hidden;
+            position: relative;
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 6px;
+        }
+        
+        .headline {
+            font-size: 15px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards 0.2s, slide-in 0.5s ease-out forwards 0.2s;
+            background: linear-gradient(90deg, #fff 0%, #37CBFF 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 0.5s forwards 0.2s, gradient-animation 4s ease infinite;
+        }
+        
+        @keyframes gradient-animation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        
+        .headline svg {
+            margin-right: 8px;
+        }
+        
+        .description {
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards 0.3s;
+        }
+        
+        .highlight {
+            color: #37CBFF; /* Blue from logo */
+            position: relative;
+        }
+        
+        /* Pulsing dot effect for real-time indication */
+        .pulse-dot {
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #37CBFF;
+            border-radius: 50%;
+            margin-right: 4px;
+            position: relative;
+        }
+        
+        .pulse-dot::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: #37CBFF;
+            border-radius: 50%;
+            animation: pulse-animation 2s infinite;
+            z-index: 0;
+        }
+        
+        .features {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+            flex-grow: 1;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            flex: 1;
+            background: rgba(21, 35, 46, 0.5);
+            padding: 6px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            opacity: 0;
+            animation: fadeIn 0.5s forwards, slide-in 0.5s ease-out forwards;
+            position: relative;
+            transition: transform 0.2s, background 0.3s;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-2px);
+            background: rgba(21, 35, 46, 0.7);
+        }
+        
+        .feature-item:nth-child(1) { 
+            animation-delay: 0.5s; 
+            border-left: 2px solid rgba(55, 203, 255, 0.5);
+        }
+        .feature-item:nth-child(2) { 
+            animation-delay: 0.6s;
+            border-left: 2px solid rgba(55, 203, 255, 0.5);
+        }
+        
+        .feature-icon {
+            margin-right: 8px;
+            flex-shrink: 0;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .feature-item:nth-child(2) .feature-icon {
+            animation-delay: 1.5s;
+        }
+        
+        .feature-details {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .feature-title {
+            font-weight: 500;
+            font-size: 12px;
+            margin-bottom: 2px;
+        }
+        
+        .feature-description {
+            font-size: 10px;
+            opacity: 0.8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .glow-effect {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(55, 203, 255, 0.08) 0%, rgba(7, 10, 29, 0) 70%);
+            border-radius: 50%;
+            transform: translate(50%, -50%);
+            z-index: 0;
+            animation: pulse 6s infinite;
+        }
+        
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes pulse {
+            0% {
+                opacity: 0.5;
+            }
+            50% {
+                opacity: 0.7;
+            }
+            100% {
+                opacity: 0.5;
+            }
+        }
+        
+        @keyframes pulse-animation {
+            0% {
+                transform: scale(1);
+                opacity: 0.7;
+            }
+            70% {
+                transform: scale(2);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-3px);
+            }
+            100% {
+                transform: translateY(0px);
+            }
+        }
+        
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        @keyframes slide-in {
+            0% {
+                transform: translateX(-10px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        /* Super compact mode for very small heights */
+        @media (max-height: 100px), (max-width: 400px) {
+            .banner-container {
+                padding: 6px;
+                min-height: 60px;
+            }
+            
+            .header {
+                margin-bottom: 3px;
+            }
+            
+            .headline {
+                font-size: 13px;
+            }
+            
+            .description {
+                display: none;
+            }
+            
+            .feature-item {
+                padding: 4px 6px;
+            }
+            
+            .feature-title {
+                font-size: 10px;
+                margin-bottom: 0;
+            }
+            
+            .feature-description {
+                font-size: 8px;
+            }
+        }
+        
+        /* Ensure responsiveness for different widths */
+        @media (max-width: 600px) {
+            .features {
+                flex-direction: column;
+                gap: 4px;
+            }
+            
+            .feature-item {
+                margin-bottom: 2px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="banner-container">
+        <div class="glow-effect"></div>
+        
+        <div class="header">
+            <div class="headline">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="animation: rotate 12s linear infinite;">
+                    <rect x="3" y="3" width="7" height="7" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="14" y="3" width="7" height="7" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="3" y="14" width="7" height="7" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <rect x="14" y="14" width="7" height="7" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                Command Centre
+            </div>
+        </div>
+        
+        <div class="description">
+            A centralised dashboard providing complete campaign oversight.
+        </div>
+        
+        <div class="features">
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2V6" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 18V22" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4.93 4.93L7.76 7.76" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.24 16.24L19.07 19.07" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M2 12H6" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18 12H22" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M4.93 19.07L7.76 16.24" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16.24 7.76L19.07 4.93" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="feature-details">
+                    <div class="feature-title">Task Statuses</div>
+                    <div class="feature-description"><span class="pulse-dot"></span><span class="highlight">Real-time</span> from ClickUp</div>
+                </div>
+            </div>
+            
+            <div class="feature-item">
+                <div class="feature-icon">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M18 20V10" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M12 20V4" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M6 20V14" stroke="#37CBFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+                <div class="feature-details">
+                    <div class="feature-title">Ads Performance</div>
+                    <div class="feature-description"><span class="highlight">30-day</span> metrics</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const banner = document.querySelector('.banner-container');
+            
+            // Function to ensure the banner fills its parent container completely
+            function resizeBanner() {
+                const parent = banner.parentElement;
+                if (parent) {
+                    // Set dimensions to match parent exactly
+                    banner.style.width = '100%';
+                    banner.style.height = '100%';
+                    
+                    // Get height
+                    const parentHeight = parent.offsetHeight;
+                    
+                    // Add/remove classes based on height
+                    if (parentHeight < 80) {
+                        // Ultra compact - hide description
+                        document.querySelector('.description').style.display = 'none';
+                        banner.style.padding = '4px';
+                    } else if (parentHeight < 120) {
+                        // Show minimal description
+                        document.querySelector('.description').style.display = 'block';
+                        banner.style.padding = '6px';
+                    } else {
+                        // Normal compact
+                        document.querySelector('.description').style.display = 'block';
+                        banner.style.padding = '10px';
+                    }
+                }
+            }
+            
+            // Run on load and when window is resized
+            window.addEventListener('resize', resizeBanner);
+            // Use MutationObserver to detect changes to the container's style or size
+            const observer = new MutationObserver(resizeBanner);
+            observer.observe(banner.parentElement || document.body, { 
+                attributes: true, 
+                attributeFilter: ['style', 'class'],
+                subtree: false
+            });
+            
+            // Initial resize
+            resizeBanner();
+        });
+    </script>
+</body>
+</html>

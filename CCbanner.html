@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +23,8 @@
       align-items: center;
       justify-content: flex-start;
       width: 100%;
-      height: 80px;                  /* Adjust height as needed */
-      padding: 0 20px;
+      min-height: 60px;              /* Minimum height rather than fixed */
+      padding: 0.8em;                /* Relative padding */
 
       /* Lighter animated gradient */
       background: linear-gradient(
@@ -40,17 +39,22 @@
 
     /* Logo styling */
     .banner img {
-      height: 40px;                  /* Larger or smaller as needed */
-      width: auto;
-      margin-right: 20px;            /* Spacing between logo and text */
+      max-height: 40px;              /* Max height instead of fixed */
+      height: auto;                  /* Auto height for proportional scaling */
+      width: auto;                   /* Auto width for proportional scaling */
+      max-width: 30%;                /* Prevent logo from getting too large */
+      margin-right: 4%;              /* Relative spacing */
     }
 
     /* Command Center text */
     .banner h1 {
-      font-size: 1.5rem;
-      color: #fff;                   /* White text on the gradient */
-      text-transform: uppercase;     /* Optional style */
-      letter-spacing: 1px;           /* Slight spacing for clarity */
+      font-size: clamp(1rem, 4vw, 1.5rem); /* Responsive font size */
+      color: #fff;                   
+      text-transform: uppercase;     
+      letter-spacing: 1px;           
+      white-space: nowrap;           /* Prevent wrapping on very small widths */
+      overflow: hidden;              /* Prevent overflow */
+      text-overflow: ellipsis;       /* Show ellipsis if text gets cut off */
     }
 
     /* Keyframes for the background animation */
@@ -63,15 +67,11 @@
     /* Responsive adjustments for smaller screens */
     @media (max-width: 480px) {
       .banner {
-        height: 60px;               /* Slightly smaller on mobile */
-        padding: 0 10px;
+        padding: 0.5em;              /* Smaller padding on mobile */
       }
       .banner img {
-        height: 30px;               /* Smaller logo on mobile */
-        margin-right: 10px;
-      }
-      .banner h1 {
-        font-size: 1.2rem;
+        max-height: 30px;            /* Smaller logo on mobile */
+        margin-right: 3%;            /* Smaller margin on mobile */
       }
     }
   </style>

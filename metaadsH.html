@@ -22,12 +22,12 @@
       justify-content: center;
     }
 
-    /* Banner container - changed to row layout */
+    /* Banner container - changed to position line on right */
     .banner {
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between;
       width: 100%;           /* Fill parent width */
       height: 100%;          /* Fill parent height */
       padding: 10px 15px;
@@ -38,20 +38,21 @@
     .banner h1 {
       font-size: 8vw;
       font-weight: 900;
-      margin-right: 15px;    /* Space between text and line */
+      margin: 0 auto;    /* Center the text */
       white-space: nowrap;
+      color: black;      /* Make text black */
     }
 
-    /* Meta styling */
+    /* Meta styling - now black */
     .meta-text {
       font-weight: bold;
       display: inline-block;
-      color: #1877F2;        /* Meta blue */
+      color: black;      /* Changed from Meta blue to black */
     }
 
     /* Vertical line styling */
     .vertical-line {
-      height: 8vw;           /* Match height to text */
+      height: 100%;      /* Full height */
       width: 12px;
       border-radius: 6px;
       position: relative;
@@ -87,8 +88,7 @@
     }
     
     @keyframes lineExpand {
-      0%, 100% { height: 8vw; }
-      50% { height: 8.5vw; }
+      0%, 50%, 100% { height: 100%; }  /* Always full height */
     }
   </style>
 </head>

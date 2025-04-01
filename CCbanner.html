@@ -10,21 +10,31 @@
       padding: 0;
       box-sizing: border-box;
     }
-    body {
-      font-family: Arial, sans-serif;
-      background: #f0f0f0; /* Page background (optional) */
+    
+    html, body {
+      width: 100%;
+      height: 100%;          /* Full height */
+      overflow: hidden;      /* Prevent scrolling */
       margin: 0;
       padding: 0;
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      background: transparent; /* Transparent background */
+      display: flex;          /* Use flexbox for centering */
+      align-items: center;     /* Center vertically */
+      justify-content: center; /* Center horizontally */
     }
 
     /* Banner container */
     .banner {
       display: flex;
       align-items: center;
-      justify-content: flex-start;
+      justify-content: center; /* Center content horizontally */
       width: 100%;
-      min-height: 60px;              /* Minimum height rather than fixed */
-      padding: 0.8em;                /* Relative padding */
+      height: 100%;            /* Fill entire container */
+      padding: 0.8em;
 
       /* Lighter animated gradient */
       background: linear-gradient(
@@ -39,22 +49,22 @@
 
     /* Logo styling */
     .banner img {
-      max-height: 40px;              /* Max height instead of fixed */
-      height: auto;                  /* Auto height for proportional scaling */
-      width: auto;                   /* Auto width for proportional scaling */
-      max-width: 30%;                /* Prevent logo from getting too large */
-      margin-right: 4%;              /* Relative spacing */
+      max-height: 40px;
+      height: auto;
+      width: auto;
+      max-width: 30%;
+      margin-right: 4%;
     }
 
     /* Command Center text */
     .banner h1 {
-      font-size: clamp(1rem, 4vw, 1.5rem); /* Responsive font size */
+      font-size: clamp(1rem, 4vw, 1.5rem);
       color: #fff;                   
       text-transform: uppercase;     
       letter-spacing: 1px;           
-      white-space: nowrap;           /* Prevent wrapping on very small widths */
-      overflow: hidden;              /* Prevent overflow */
-      text-overflow: ellipsis;       /* Show ellipsis if text gets cut off */
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     /* Keyframes for the background animation */
@@ -67,11 +77,11 @@
     /* Responsive adjustments for smaller screens */
     @media (max-width: 480px) {
       .banner {
-        padding: 0.5em;              /* Smaller padding on mobile */
+        padding: 0.5em;
       }
       .banner img {
-        max-height: 30px;            /* Smaller logo on mobile */
-        margin-right: 3%;            /* Smaller margin on mobile */
+        max-height: 30px;
+        margin-right: 3%;
       }
     }
   </style>

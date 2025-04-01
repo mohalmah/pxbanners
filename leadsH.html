@@ -22,12 +22,12 @@
       justify-content: center;
     }
 
-    /* Banner container - changed to row layout like METRICS */
+    /* Banner container - changed to space-between layout */
     .banner {
       display: flex;
       flex-direction: row;
       align-items: center;
-      justify-content: center;
+      justify-content: space-between; /* Push items to edges */
       width: 100%;           /* Fill parent width */
       height: 100%;          /* Fill parent height */
       padding: 10px 15px;
@@ -39,7 +39,7 @@
       font-size: 8vw;
       font-weight: 900;
       color: black;          /* Black text color */
-      margin-right: 15px;    /* Space between text and line */
+      margin-right: 0;       /* Remove right margin */
     }
 
     /* Vertical line styling - using green gradient */

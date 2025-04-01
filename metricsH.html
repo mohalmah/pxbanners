@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Metrics Banner</title>
+  <title>CRO Banner</title>
   <style>
     /* Basic resets and no scroll */
     html, body {
@@ -25,93 +25,53 @@
     /* Banner container */
     .banner {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
       width: 100%;           /* Fill parent width */
       height: 100%;          /* Fill parent height */
       padding: 10px 15px;
-      border-radius: 10px;
       background: transparent; /* Transparent banner */
       box-sizing: border-box; /* Include padding in width/height calculation */
     }
     
-    /* Content wrapper for better positioning */
-    .content {
-      display: flex;
-      align-items: center;
-      flex: 1;
-    }
-    
-    /* Chart icon styling */
-    .chart-icon {
-      height: 40px;
-      display: flex;
-      align-items: flex-end;
-      margin-right: 15px;
-    }
-    
-    .chart-bar {
-      width: 8px;
-      margin: 0 2px;
-      border-radius: 4px;
-    }
-    
-    .bar1 {
-      height: 30px;
-      background-color: #4285F4; /* Blue */
-    }
-    
-    .bar2 {
-      height: 20px;
-      background-color: #EA4335; /* Red */
-    }
-    
-    .bar3 {
-      height: 40px;
-      background-color: #FBBC05; /* Yellow */
-    }
-    
     .banner h1 {
-      font-size: 2.2rem;     /* Bigger font */
+      font-size: 8vw;
       font-weight: 900;
-      white-space: nowrap;
+      margin-bottom: 10px;
     }
 
-    /* Metrics colorful styling */
-    .m { color: #4285F4; } /* Blue */
-    .e { color: #EA4335; } /* Red */
-    .t { color: #FBBC05; } /* Yellow */
-    .r { color: #4285F4; } /* Blue */
-    .i { color: #34A853; } /* Green */
-    .c { color: #EA4335; } /* Red */
-    .s { color: #FBBC05; } /* Yellow */
+    /* CRO colorful styling */
+    .c { color: #4285F4; } /* Blue */
+    .r { color: #EA4335; } /* Red */
+    .o { color: #FBBC05; } /* Yellow */
 
-    /* Vertical line styling */
-    .vertical-line {
-      width: 8px;
-      height: 80%;
-      margin-left: 20px;
-      border-radius: 4px;
+    /* Underline styling */
+    .underline {
+      width: 90%;
+      height: 12px;
+      border-radius: 6px;
       position: relative;
       overflow: hidden;
-      background: linear-gradient(to bottom, 
+      background: linear-gradient(to right, 
         #4285F4, /* Blue */
         #EA4335, /* Red */
         #FBBC05, /* Yellow */
         #34A853  /* Green */
       );
+      animation: underlineExpand 4s infinite;
     }
     
     /* Shimmer animation */
-    .vertical-line::after {
+    .underline::after {
       content: "";
       position: absolute;
-      top: -100%;
-      left: 0;
+      left: -100%;
+      top: 0;
       width: 100%;
       height: 100%;
       background: linear-gradient(
-        to bottom,
+        to right,
         rgba(255,255,255,0),
         rgba(255,255,255,0.3),
         rgba(255,255,255,0)
@@ -120,54 +80,23 @@
     }
     
     @keyframes shimmer {
-      0%   { top: -100%; }
-      50%  { top: 100%;  }
-      100% { top: 100%;  }
+      0% { left: -100%; }
+      50% { left: 100%; }
+      100% { left: 100%; }
     }
-
-    /* Responsive adjustments */
-    @media (max-width: 480px) {
-      .banner {
-        padding: 8px;
-      }
-      .chart-icon {
-        height: 30px;
-      }
-      .chart-bar {
-        width: 6px;
-      }
-      .bar1 {
-        height: 22px;
-      }
-      .bar2 {
-        height: 16px;
-      }
-      .bar3 {
-        height: 30px;
-      }
-      .banner h1 {
-        font-size: 1.8rem;
-      }
-      .vertical-line {
-        margin-left: 10px;
-      }
+    
+    @keyframes underlineExpand {
+      0%, 100% { width: 90%; }
+      50% { width: 95%; }
     }
   </style>
 </head>
 <body>
   <div class="banner">
-    <div class="content">
-      <!-- Chart Icon -->
-      <div class="chart-icon">
-        <div class="chart-bar bar1"></div>
-        <div class="chart-bar bar2"></div>
-        <div class="chart-bar bar3"></div>
-      </div>
-      <h1>
-        <span class="m">M</span><span class="e">E</span><span class="t">T</span><span class="r">R</span><span class="i">I</span><span class="c">C</span><span class="s">S</span>
-      </h1>
-    </div>
-    <div class="vertical-line"></div>
+    <h1>
+      <span class="c">C</span><span class="r">R</span><span class="o">O</span>
+    </h1>
+    <div class="underline"></div>
   </div>
 </body>
 </html>
